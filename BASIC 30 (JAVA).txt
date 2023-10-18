@@ -1,0 +1,951 @@
+5)prime number checker function
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int n = sc.nextInt();
+		System.out.println(isPrime(n));
+	}
+	static boolean isPrime(int n) {
+	    if (n < 2) {
+	        return false;
+	    }
+	    for (int i=2; i<=Math.sqrt(n); i++) {
+	        if (n%i == 0) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+}
+
+
+6)palindrome function
+
+palindrome 
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		String str = sc.next();
+		System.out.println(isPalindrome(str));
+	}
+	static boolean isPalindrome(String s) {
+	    int left = 0, right = s.length()-1;
+	    while (left < right) {
+	        if (s.charAt(left) != s.charAt(right)) {
+	            return false;
+	        }
+	        left++;
+	        right--;
+	    }
+	    return true;
+	}
+}
+
+
+7)reverse a string
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		String str = sc.next();
+		System.out.println(reverse(str));
+	}
+	static String reverse(String s) {
+	   // StringBuilder sb = new StringBuilder(s);
+	   // sb.reverse();
+	   // return sb.toString();
+	   
+	   char[] arr = s.toCharArray();
+	   int left = 0, right = arr.length-1;
+	   while (left < right) {
+	       swap(arr, left, right);
+	       left++;
+	       right--;
+	   }
+	   String res = "";
+	   for (char ch : arr) {
+	       res += ch;
+	   }
+	   return res;
+	}
+	static void swap(char[] arr, int left, int right) {
+	    char temp = arr[left];
+	    arr[left] = arr[right];
+	    arr[right] = temp;
+	}
+}
+
+12)factorial recursion
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int n = sc.nextInt();
+		System.out.println(factorial(n));
+	}
+	static int factorial (int n) {
+	    if (n == 0) {
+	        return 1;
+	    }
+	    return n*factorial(n-1);
+	}
+}
+
+4)Fibonacci recursion
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+    static int n1=0,n2=1,n3=0; 
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int n = sc.nextInt();
+		System.out.print(n1 + " " + n2 + " ");
+		fibonacci(n-2);
+	}
+	static void fibonacci (int n) {
+	    if (n > 0) {
+	        n3 = n1 + n2;    
+            n1 = n2;    
+            n2 = n3; 
+            System.out.print(n2 + " ");
+	        fibonacci(n-1);
+	    }
+	}
+}
+
+15)Implementation of Stack
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Main {
+    private static final int size = 10;
+    private static int[] s = new int[size];
+    private static int top = -1;
+
+    public static void push(int x) {
+        if (top == size - 1) {
+            System.out.println("Stack is overflowed");
+        } 
+        else {
+            top++;
+            s[top] = x;
+        }
+    }
+
+    public static void pop() {
+        if (top <= -1) {
+            System.out.println("Stack is underflow");
+        } 
+        else {
+            top--;
+        }
+    }
+
+    public static void display() {
+        if (top >= 0) {
+            System.out.print("The elements in the stack are: ");
+            for (int i = top; i >= 0; i--) {
+                System.out.print(s[i] + " ");
+            }
+            System.out.println();
+        } 
+        else {
+            System.out.println("The stack is empty");
+        }
+    }
+
+    public static void main(String[] args) {
+        int c;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n1. Push\n2. Pop\n3. Display\n4. Exit");
+            System.out.print("Enter the option you want to choose: ");
+            c = scanner.nextInt();
+
+            switch (c) {
+                case 1:
+                    System.out.print("Enter the element to push: ");
+                    int element = scanner.nextInt();
+                    push(element);
+                    break;
+                case 2:
+                    pop();
+                    break;
+                case 3:
+                    display();
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose a valid option.");
+            }
+        }
+    }
+}
+
+
+16)Queue Implementation 
+
+import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class QueueExample {
+    private static final int size = 10;
+    private static int[] q = new int[size];
+    private static int front = -1;
+    private static int rear = -1;
+
+    public static void enqueue(int x) {
+        if (rear == -1 && front == -1) {
+            rear = 0;
+            front = 0;
+        }
+        if (rear == size - 1) {
+            System.out.println("\nQueue is full");
+        } else {
+            rear++;
+            q[rear] = x;
+        }
+    }
+
+    public static void dequeue() {
+        if (rear == -1 && front == -1) {
+            System.out.println("\nQueue is empty");
+        } else {
+            front++;
+        }
+    }
+
+    public static void display() {
+        if (rear == -1 && front == -1) {
+            System.out.println("\nQueue is empty");
+        }
+        for (int i = front; i <= rear; i++) {
+            System.out.println(q[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        int c;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit");
+            System.out.print("Enter the option you want to choose: ");
+            c = scanner.nextInt();
+
+            switch (c) {
+                case 1:
+                    System.out.print("Enter the element to enqueue: ");
+                    int element = scanner.nextInt();
+                    enqueue(element);
+                    break;
+                case 2:
+                    dequeue();
+                    break;
+                case 3:
+                    display();
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose a valid option.");
+            }
+        }
+    }
+}
+
+14)Linked List implementation
+public class Main{
+    static class node{
+        int data;
+        node prev=null;
+        node next=null;
+        public node(int data){
+            this.data=data;
+        }
+    }
+    public static void traverse(node head){
+        System.out.println("Printing Elements:>>>>");
+        node current=head;
+        while(current.next!=null){
+            System.out.print(current.data+"->");
+            current=current.next;
+        }
+        System.out.println(current.data);
+    }
+    public static void traverserev(node tail){
+        System.out.println("Printing Elements in Reverse order:>>>>");
+        node current=tail;
+        while(current.prev!=null){
+            System.out.print(current.data+"->");
+            current=current.prev;
+            
+        }
+        System.out.println(current.data); 
+    }
+    public static node insertBeg(node head,int data){
+        System.out.println("Inserting Element "+data+" at start:>>>>");
+        node current=new node(data);
+        current.next=head;
+        if(head!=null){
+            head.prev=current;
+        }
+        head=current;
+        return head;
+    }
+    public static node DeleteBeg(node head){
+        System.out.println("Deleting Element at start:>>>>");
+        if(head==null){
+            System.out.println("There is no Element");
+            return null;
+        }
+        head=head.next;
+        head.prev=null;
+        return head;
+    }
+    public static void insertEnd(node head,int data){
+        System.out.println("Inserting Element "+data+" at end:>>>>");
+        node cur=new node(data);
+        node current=head;
+        while(current.next!=null){
+            current=current.next;
+            
+        }
+        cur.prev=current;
+        current.next=cur;
+        tail=cur;
+    }
+    public static void DeleteEnd(node head){
+        System.out.println("Deleting Element at end:>>>>");
+        if(head==null){
+            System.out.println("There is no Element");
+            return ;
+        }
+        tail=tail.prev;
+        tail.next=null;
+    }
+    public static void insertAtMid(node head,int data){
+        System.out.println("Inserting Element "+data+" at middle:>>>>");
+        node cur=new node(data);
+        node current=head;
+        int cnt=0;
+        while(current!=null){
+            current=current.next;
+            cnt++;
+        }
+        cnt=cnt/2;
+        node nex=head;
+        node pre=null;
+        for(int i=0;i<cnt;i++){
+            pre=nex;
+            nex=nex.next;
+        }
+        pre.next=cur;
+        cur.next=nex;
+        cur.prev=pre;
+        nex.prev=cur;
+        
+    }
+    public static void deleteAtMid(node head){
+        System.out.println("Inserting Element at middle:>>>>");
+        node current=head;
+        int cnt=0;
+        while(current!=null){
+            current=current.next;
+            cnt++;
+        }
+        cnt=cnt/2;
+        node nex=head;
+        node pre=null;
+        for(int i=0;i<cnt;i++){
+            pre=nex;
+            nex=nex.next;
+        }
+        pre.next=nex.next;
+        nex.next.prev=pre;
+        
+    }
+    public static void insertAtPos(node head,int data,int pos){
+        node current=head;
+        int cnt=0;
+        while(current!=null){
+            current=current.next;
+            cnt++;
+        }
+        if(pos<0||pos>cnt){
+            System.out.println("Invalid");
+            return;
+        }
+        System.out.println("Inserting Element "+data+" at given position "+(pos+1)+" :>>>>");
+        if(pos==0){
+            insertBeg(head,data);
+            return;
+        }
+        
+        node cur=new node(data);
+        
+        if(pos==cnt){
+            insertEnd(head,data);
+            return;
+        }
+        
+        node nex=head;
+        node pre=null;
+        for(int i=0;i<pos;i++){
+            pre=nex;
+            nex=nex.next;
+        }
+        pre.next=cur;
+        cur.next=nex;
+        cur.prev=pre;
+        nex.prev=cur;
+        
+    }
+    public static void deleteAtPos(node head,int pos){
+        node current=head;
+        int cnt=0;
+        while(current!=null){
+            current=current.next;
+            cnt++;
+        }
+        if(pos<0||pos>cnt){
+            System.out.println("Invalid");
+            return;
+        }
+        System.out.println("Deleting Element at given position "+(pos+1)+" :>>>>");
+        if(pos==0){
+            DeleteBeg(head);
+            return;
+        }
+        if(pos==cnt){
+            DeleteEnd(head);
+            return;
+        }
+        
+        node nex=head;
+        node pre=null;
+        for(int i=0;i<pos;i++){
+            pre=nex;
+            nex=nex.next;
+        }
+        pre.next=nex.next;
+        nex.next.prev=pre;
+    }
+    public static node head=null;
+    public static node tail=null;
+    public static void main(String[]args){
+        node n1= new node(5);
+        node n2= new node(8);
+        node n3= new node(2);
+        node n4= new node(1);
+        node n5= new node(3);
+        n1.next=n2;
+        n2.next=n3;
+        n3.next=n4;
+        n2.prev=n1;
+        n3.prev=n2;
+        n4.prev=n3;
+        head=n1;
+        tail=n4;
+        traverse(head);
+        traverserev(tail);
+        head=insertBeg(head,10);
+        traverse(head);
+        insertEnd(head,11);
+        traverse(head);
+        insertAtMid(head,78);
+        traverse(head);
+        insertAtPos(head,87,4);
+        traverse(head);
+        head=DeleteBeg(head);
+        traverse(head);
+        DeleteEnd(head);
+        traverse(head);
+        DeleteEnd(head);
+        traverse(head);
+        deleteAtMid(head);
+        traverse(head);
+        deleteAtPos(head,2);
+        traverse(head);
+        insertAtPos(head,78,3);
+        traverse(head);
+}
+}
+
+17)String reversal using stack
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		String str = sc.next();
+		System.out.println(stackReversal(str));
+	}
+	static String stackReversal(String str) {
+	    Stack<Character> stk = new Stack<>();
+		for (char ch : str.toCharArray()) {
+		    stk.push(ch);
+		}
+		String res = "";
+		while (!stk.isEmpty()) {
+		    res += stk.pop();
+		}
+		return res;
+	}
+}
+
+19)Binary to Decimal Conversion:
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		String str = sc.next();
+		System.out.println(binaryToDecimal(str));
+	}
+	
+	static int binaryToDecimal(String str) {
+        int decimal = 0, power = 0;
+        for (int i = str.length() - 1; i >= 0; i--) {
+            int digit = str.charAt(i) - '0';
+            decimal += digit * Math.pow(2, power);
+            power++;
+        }
+        return decimal;
+    }
+}
+
+20)decimal to binary Conversion:
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		int n = sc.nextInt();
+		System.out.println(decimalToBinary(n));
+	}
+	
+	static String decimalToBinary(int n) {
+        if (n == 0) {
+            return "0";
+        }
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            int rem = n%2;
+            sb.insert(0, rem);
+            n = n/2;
+        }
+        return sb.toString();
+	}
+}
+
+21)Anagram checker
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner (System.in);
+		String a = sc.next();
+		String b = sc.next();
+		System.out.println(isAnagram(a, b));
+	}
+	static boolean isAnagram (String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }        
+        int[] arr = new int[26];
+        for (char ch : s.toCharArray()) {
+            arr[ch - 'a']++;
+        }
+        for (char ch : t.toCharArray()) {
+            if (arr[ch - 'a'] > 0) {
+                arr[ch - 'a']--;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+	
+}
+
+22)Generate all permutations to a string
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		int n = str.length();
+		permute(str, 0, n - 1);
+	}
+	static void permute(String str, int l, int r) {
+		if (l == r) {
+			System.out.println(str);
+		}
+		else {
+			for (int i = l; i <= r; i++) {
+				str = swap(str, l, i);
+				permute(str, l + 1, r);
+				str = swap(str, l, i);
+			}
+		}
+	}
+	static String swap(String a, int i, int j) {
+		char temp;
+		char[] charArray = a.toCharArray();
+		temp = charArray[i];
+		charArray[i] = charArray[j];
+		charArray[j] = temp;
+		return String.valueOf(charArray);
+	}
+}
+
+
+23)Common Elements in Arrays
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int m = sc.nextInt();
+		int n = sc.nextInt();
+		int[] a = new int[m];
+		int[] b = new int[n];
+		for (int i=0; i<m; i++) {
+		    a[i] = sc.nextInt();
+		}
+		for (int i=0; i<n; i++) {
+		    b[i] = sc.nextInt();
+		}
+		int[] ans1 = commonElements1(a, b);
+		for (int num : ans1) {
+		    System.out.print(num + " ");
+		}
+		System.out.println();
+		int[] ans2 = commonElements2(a, b);
+		for (int num : ans2) {
+		    System.out.print(num + " ");
+		}
+    }
+    //function to  know the common elements
+	static int[] commonElements1(int[] nums1, int[] nums2) {
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+        for (int n : nums1) {
+            set1.add(n);
+        }
+        for (int n : nums2) {
+            if (set1.contains(n))
+                set2.add(n);
+        }
+        int [] res = new int[set2.size()];
+        int ind = 0;
+        for (int n : set2){
+            res[ind++] = n;
+        }
+        return res;
+    }
+    //function to generate all the common elements including duplicated if repeated multiple times in both Arrays
+    static int[] commonElements2(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map1 = new HashMap<>();
+        HashMap<Integer, Integer> map2 = new HashMap<>();
+        for (int n : nums1) {
+            map1.put(n, map1.getOrDefault(n, 0) + 1);
+        }
+        for (int n : nums2) {
+            if (map1.containsKey(n) && map1.get(n) > 0) {
+                map2.put(n, map2.getOrDefault(n, 0) + 1);
+            }
+            map1.put(n, map1.get(n)-1);
+        }
+        int n = map2.values().stream().mapToInt(Integer::intValue).sum();
+        int[] res = new int[n];
+        int ind = 0;
+        for (Map.Entry<Integer, Integer> entry : map2.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
+            for (int i=0; i<value; i++) {
+                res[ind++] = key;
+            }
+        }
+        return res;
+    }
+}
+
+
+24)Removing Duplicates from an Array
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for (int i=0; i<n; i++) {
+		    arr[i] = sc.nextInt();
+		}
+		int ind = removeduplicates(arr, n);
+		for (int i=0; i<ind; i++) {
+		    System.out.print(arr[i] + " ");
+		}
+    }
+    // //if array is given in sorted order
+    // static int removeduplicates(int arr[], int n){
+    //     if (n == 0 || n == 1) {
+    //         return n;
+    //     }
+    //     int j = 0;
+    //     for ( int i = 0; i < n ; i++) {
+    //         if (arr[i] != arr[i-1]) {
+    //             arr[++j] = arr[i];
+    //         }
+    //     }
+    //     return j;
+    // }
+    
+    // if the array is not in sorted order 
+    static int removeduplicates(int arr[], int n){
+        if (n == 0 || n == 1) {
+            return n;
+        }
+        Set<Integer> set = new HashSet<>();
+        int j = 0;
+        for (int i=0; i<n; i++) {
+            if (!set.contains(arr[i])) {
+                set.add(arr[i]);             
+                arr[j++] = arr[i];
+            }
+        }
+        return j;
+    }
+}
+
+26)Power of a number
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		double x = sc.nextDouble();
+		int pow = sc.nextInt();
+		System.out.println(myPow(x, pow));
+    }
+    static double pow (double x, long n) {
+        if (n == 0) {
+            return 1;
+        }
+        double ans = pow (x, n/2);
+        if (n%2 == 0) {
+            ans = ans*ans;
+        }
+        else {
+            ans = ans*ans*x;
+        }
+        return ans;
+    }
+    static double myPow(double x, int n) {
+        long temp = Math.abs(n);
+        double ans = pow(x,temp);
+        if (n < 0) {
+            ans = 1/ans;
+        }
+        return ans;
+    }
+}
+
+27)Transpose of a mtarix
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int row = sc.nextInt();
+		int col = sc.nextInt();
+		int[][] mat = new int[row][col];
+		for (int i=0; i<row; i++) {
+		    for (int j=0; j<col; j++) {
+		        mat[i][j] = sc.nextInt();
+		    }
+		}
+		int[][] ans = transpose(mat, row, col);
+		for (int i=0; i<col; i++) {
+		    for (int j=0; j<row; j++) {
+		        System.out.print(ans[i][j] + " ");
+		    }
+		    System.out.println();
+		}
+    }
+    static int[][] transpose(int[][] mat, int row, int col) {
+        int[][] ans = new int[col][row];
+        for (int i=0; i<row; i++) {
+            for (int j=0; j<col; j++) {
+                ans[j][i] = mat[i][j];
+            }
+        }
+        return ans;
+    } 
+}
+
+28)Reversing a Linked List
+  Definition for singly-linked list.
+  public class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  }
+ 
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null){
+            return null;
+        }
+        ListNode temp=head;
+        ListNode after=temp.next;
+        ListNode before=null;
+        while(temp!=null){
+            after=temp.next;
+            temp.next=before;
+            before=temp;
+            temp=after;
+        }
+        return before;
+    }
+}
+
+29)Detecting cycle in a Linked List
+  Definition for singly-linked list.
+  class ListNode {
+      int val;
+      ListNode next;
+      ListNode(int x) {
+          val = x;
+          next = null;
+      }
+  }
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head==null){
+            return false;
+        }
+        ListNode slow=head;
+        ListNode fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return true;
+            }
+        }
+        return false;
+        
+    }
+}
+
+8)Array sum
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int[] arr=new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i]=sc.nextInt();
+		}
+		System.out.println(ArraySum(arr));
+	}
+	static int ArraySum(int[] arr){
+	    int sum=0;
+	    for(int i=0;i<arr.length;i++){
+	        sum=sum+arr[i];
+	    }
+	    return sum;
+	}
+}
+
+9)Max num in array
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int[] arr=new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i]=sc.nextInt();
+		}
+		System.out.println(MaxNum(arr));
+	}
+	static int MaxNum(int[] arr){
+	    int max=arr[0];
+	    for(int i=0;i<arr.length;i++){
+	        if(arr[i]>max){
+	            max=arr[i];
+	        }
+	    }
+	    return max;
+	}
+}  
